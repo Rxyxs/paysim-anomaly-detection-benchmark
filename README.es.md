@@ -1,4 +1,4 @@
-[ 🇺🇸 [Read in English](README.md) ] | [ 🇨🇱 Español ]
+[[English](README.md) ] | [Español ]
 
 # Bank Anomaly Detection
 
