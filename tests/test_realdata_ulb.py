@@ -40,3 +40,22 @@ def test_compare_reports_rank_correlation_against_paysim():
     result = ub.compare(fake)
     assert result["spearman_roc_rank"] == 1.0
     assert all(shift == 0 for shift in result["rank_shift"].values())
+
+
+def test_ieee_split_fits_on_normals_and_fills_missing_from_train():
+    from src.realdata import ieee_benchmark as ib
+
+    rng = np.random.default_rng(1)
+    n = 300_000
+    df = pd.DataFrame({c: rng.poisson(3, n).astype(float) for c in ib.BASE_COLUMNS})
+    df.loc[rng.choice(n, n // 3, replace=False), "D4"] = np.nan
+    df["TransactionAmt"] = rng.exponential(80, n)
+    df["TransactionDT"] = np.arange(n)
+    df["isFraud"] = (rng.random(n) < 0.05).astype(int)
+    X_train, X_test, y_test = ib.split(df, temporal=True)
+    assert len(X_train) == ub.TRAIN_NORMAL_SIZE
+    assert not X_train.isna().any().any() and not X_test.isna().any().any()
+    assert "D4_missing" in X_train.columns
+    assert list(X_test.columns) == list(X_train.columns)
+    future_frauds = int(df.loc[df["TransactionDT"] >= df["TransactionDT"].quantile(0.7), "isFraud"].sum())
+    assert int(y_test.sum()) == min(ib.TEST_FRAUD_SIZE, future_frauds)

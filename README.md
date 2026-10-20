@@ -7,7 +7,7 @@
 ![Go](https://img.shields.io/badge/Go-1.21-00ADD8?logo=go&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-16%20detectors-F7931E?logo=scikitlearn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-supervised-EB5E28)
-![Tests](https://img.shields.io/badge/tests-357%20passing-brightgreen?logo=pytest&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-358%20passing-brightgreen?logo=pytest&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-Autoencoder-EE4C2C?logo=pytorch&logoColor=white)
 ![DuckDB](https://img.shields.io/badge/DuckDB-metrics%20store-FFF000?logo=duckdb&logoColor=black)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
@@ -24,7 +24,7 @@ Seven modules and roughly 800 lines of documentation. Depending on what brings y
 | **Assess technical judgment** | [Methodological errors found and corrected](#methodological-errors-found-and-corrected) — the section that says the most about how the work was done |
 | **See the models and their results** | The [Module 3 benchmark](#module-3-detector-family-benchmark-unsupervised) and the [table of 16 detectors](#the-16-detectors-at-a-glance) |
 | **Judge whether this could ship** | [Module 5](#module-5-from-ranking-to-operation--threshold-money-and-aging), where the ranking turns into decisions, and [Module 8](#module-8-from-model-to-service), which is what actually gets deployed |
-| **Review the code** | `src/unsupervised/families.py` for the classical detectors, `src/deep/` for the deep ones, `tests/` for the 357 tests |
+| **Review the code** | `src/unsupervised/families.py` for the classical detectors, `src/deep/` for the deep ones, `tests/` for the 358 tests |
 | **Run it** | [Installation](#installation) and [Usage](#usage) |
 
 Each module answers a question the previous one left open. They aren't ordered by model complexity but by that chain: it starts by classifying known fraud and ends by asking where a team's review capacity should be spent.
@@ -48,7 +48,7 @@ Six modules, 15 transaction-level detectors, one account-level detector and thre
 | **Production latency is 320x the backtest's.** Measuring batch scoring and assuming it carries over to single transactions understates cost by two orders of magnitude. | [Module 8](#latency-the-number-a-backtest-never-shows) |
 | **Explaining an alert by occluding one column at a time doesn't work** when features are dependent by construction. Two corrections failed before the right one. | [Module 8](#why-this-alert-fired-and-two-failed-attempts) |
 | **Recalibrating the conformal window brings the alert rate back to what was promised** (peak from 11.09% to 2.32%), and an ablation shows the static package's extra recall was bought with its excess alerts. | [Module 9](#module-9-continuous-recalibration) |
-| **On real card fraud (ULB) the ranking barely transfers** (Spearman 0.38, 0.09 across days), the "anti-informative" baseline scores ROC-AUC 0.931, and LOF collapses from 0.667 to 0.016 PR-AUC from one day to the next. Gaussian Mixture stays on top in both worlds. | [Module 10](#module-10-does-the-ranking-survive-real-fraud) |
+| **On real card fraud (ULB) the ranking barely transfers** (Spearman 0.38, 0.09 across days), the "anti-informative" baseline scores ROC-AUC 0.931, and LOF collapses from 0.667 to 0.016 PR-AUC from one day to the next. On IEEE-CIS e-commerce fraud no unsupervised detector exceeds PR-AUC 0.22. Gaussian Mixture is first on all three datasets. | [Module 10](#module-10-does-the-ranking-survive-real-fraud) |
 
 Eleven methodological errors surfaced along the way and are documented with their fixes in [a section of their own](#methodological-errors-found-and-corrected), together with four of my own hypotheses that the data refuted.
 
@@ -65,11 +65,11 @@ Eleven methodological errors surfaced along the way and are documented with thei
 | **7 — Drift and labels** | How does a detector adapt on its own, and what do I do when a few labels appear? | `src/adaptive/run_adaptive.py` | [07](notebooks/07_deriva_y_etiquetas.ipynb) |
 | **8 — Serving** | How do you score a new transaction, how long does it take, and why did the alert fire? | `src/serving/run_serving.py` | [08](notebooks/08_del_modelo_al_servicio.ipynb) |
 | **9 — Recalibration** | If calibration moves with traffic, does the alert rate return to what was promised? At what cost? | `src/serving/run_recalibration.py` | [09](notebooks/09_recalibracion_continua.ipynb) |
-| **10 — Real data** | Does the ranking measured on PaySim hold on real card fraud? | `src/realdata/ulb_benchmark.py` | — |
+| **10 — Real data** | Does the ranking measured on PaySim hold on real fraud (ULB cards, IEEE-CIS e-commerce)? | `src/realdata/ulb_benchmark.py` | — |
 
 ## Honest note on validation
 
-The numbers in this README **come from an actual run** of the pipeline on the full PaySim dataset (6,362,620 rows downloaded via `kagglehub`), not from estimates: `python -m src.unsupervised.train_unsupervised` for Module 2, `python -m src.unsupervised.benchmark` for Module 3, `python -m src.deep.train_deep` for Module 4, `python -m src.operations.run_operations` for Module 5, `python -m src.conformal.run_conformal` for Module 6, `python -m src.adaptive.run_adaptive` for Module 7, `python -m src.serving.run_serving` for Module 8, `python -m src.serving.run_recalibration` for Module 9, and `python -m src.realdata.ulb_benchmark` for Module 10 (real ULB data), plus **357/357 unit tests passing** (`pytest tests/`, on synthetic data, no download needed). Fit and scoring times were measured on that same machine (Windows 10, CPU) and are meant for comparing detectors *against each other*, not as an absolute hardware reference.
+The numbers in this README **come from an actual run** of the pipeline on the full PaySim dataset (6,362,620 rows downloaded via `kagglehub`), not from estimates: `python -m src.unsupervised.train_unsupervised` for Module 2, `python -m src.unsupervised.benchmark` for Module 3, `python -m src.deep.train_deep` for Module 4, `python -m src.operations.run_operations` for Module 5, `python -m src.conformal.run_conformal` for Module 6, `python -m src.adaptive.run_adaptive` for Module 7, `python -m src.serving.run_serving` for Module 8, `python -m src.serving.run_recalibration` for Module 9, and `python -m src.realdata.ulb_benchmark` for Module 10 (real ULB data), plus **358/358 unit tests passing** (`pytest tests/`, on synthetic data, no download needed). Fit and scoring times were measured on that same machine (Windows 10, CPU) and are meant for comparing detectors *against each other*, not as an absolute hardware reference.
 
 Two caveats you need in order to read the metrics correctly:
 
@@ -997,7 +997,7 @@ Two limits of the method remain, worth keeping in mind when reading the `motivo`
 
 ### Continuous integration
 
-`.github/workflows/ci.yml` runs **5 jobs on every push**: the 357-test pytest suite on both **Python 3.10 and 3.12** (using PyTorch's CPU wheel), a `ruff` lint pass scoped to real errors (syntax, undefined names), and — since the repository grew a second language — `go build`/`go test` and a Docker build check for the Go volatility streamer (`go/`). The Python tests use synthetic data and never download PaySim, which is what makes them viable on a runner.
+`.github/workflows/ci.yml` runs **5 jobs on every push**: the 358-test pytest suite on both **Python 3.10 and 3.12** (using PyTorch's CPU wheel), a `ruff` lint pass scoped to real errors (syntax, undefined names), and — since the repository grew a second language — `go build`/`go test` and a Docker build check for the Go volatility streamer (`go/`). The Python tests use synthetic data and never download PaySim, which is what makes them viable on a runner.
 
 The two-version matrix isn't decorative: while this module was being built the environment moved from Python 3.10 with pandas 2.x to Python 3.12 with **pandas 3.0.5, numpy 2.5.2 and scikit-learn 1.9.0**, and 152 of the tests at the time passed without a single code change. That's worth verifying on every commit rather than by accident.
 
@@ -1122,7 +1122,15 @@ PR-AUC depends on prevalence (14.1% fraud in the PaySim test set, 1.0% here), so
 - **Gaussian Mixture holds the top in both worlds.** It is first by PR-AUC on PaySim and on ULB, and stays near the top across days (0.727). PCA reconstruction and robust Mahalanobis join it. One caveat: ULB's features are already principal components of the original data, which favors linear and Gaussian models.
 - **LOF collapses over time.** It is second on PaySim and fourth on ULB at random, but fit on day 1 and scored on day 2 its PR-AUC falls from 0.667 to 0.016. Local density learned on one day does not describe the next; the global models degrade far less.
 
-IEEE-CIS, a second real dataset (Vesta e-commerce fraud), requires accepting the competition rules on Kaggle before the API can download it; it is the natural next comparison.
+**Second real dataset: IEEE-CIS** (`src/realdata/ieee_benchmark.py`). Vesta's e-commerce card-not-present fraud, 590,540 transactions, 3.5% fraud, with raw counters and time deltas instead of principal components (log amount, C1-C14, D1/D4/D10/D15 with missing-value flags). Same protocol, 5,000 frauds in the test set (9.1% prevalence), and a temporal split that fits on the first 70% of time.
+
+| | PaySim | ULB | IEEE-CIS |
+|---|---:|---:|---:|
+| Best PR-AUC (Gaussian Mixture) | 0.807 | 0.816 | 0.217 (temporal 0.221) |
+| ROC-AUC range across 19 detectors | 0.38–0.95 | 0.90–0.96 | 0.46–0.69 |
+| Spearman with the PaySim ranking (ROC-AUC) | — | 0.38 | 0.28 (temporal 0.35) |
+
+On e-commerce fraud, unsupervised detection nearly fails: the best detector is 2.4x the base rate, and three (HBOS, Half-Space Trees, FastABOD) barely beat it. The fraud is not anomalous in these features; it looks like ordinary purchases. For scale, a supervised LightGBM on the same transactions reaches PR-AUC 0.515 (chile-polyglot-fraud-engine, §6.0.1). Gaussian Mixture is first by PR-AUC in all three datasets, the one result that transfers; the rest of the order does not.
 
 ## The 16 detectors at a glance
 
@@ -1213,7 +1221,7 @@ python -m src.conformal.run_conformal        # Module 6
 python -m src.adaptive.run_adaptive          # Module 7
 python -m src.serving.run_serving            # Module 8
 python -m src.serving.run_recalibration      # Module 9
-pytest tests/                                # 357 tests, no download needed
+pytest tests/                                # 358 tests, no download needed
 ```
 
 Every module starts by loading and cleaning the CSV's 6,362,620 rows (493 MB), which is what dominates startup time; detector fit and scoring are timed separately in Module 3's table. The unit tests run in seconds because they use synthetic data and never touch the dataset.
@@ -1299,7 +1307,7 @@ Closing note for this round of hardening work: what's actually verified as of th
 | | Item | Evidence |
 |---|---|---|
 | ✅ | Automated CI (5/5 jobs on GitHub Actions: Py3.10, Py3.12, Docker, Go, Lint) | [Continuous integration](#continuous-integration); `.github/workflows/ci.yml` |
-| ✅ | 357 unit and contract tests passing | `pytest tests/ -v` — `tests/test_anomaly_model_contract.py` (model contracts: shape, imbalance, NaN/Inf), `tests/test_conformal.py` (18 tests incl. the KS uniformity check below), `tests/test_benchmark_metrics.py` (PR-AUC-vs-ROC-AUC ranking) |
+| ✅ | 358 unit and contract tests passing | `pytest tests/ -v` — `tests/test_anomaly_model_contract.py` (model contracts: shape, imbalance, NaN/Inf), `tests/test_conformal.py` (18 tests incl. the KS uniformity check below), `tests/test_benchmark_metrics.py` (PR-AUC-vs-ROC-AUC ranking) |
 | ✅ | Strict input validation (NaN/Inf rejected at the serving boundary and in custom detectors) | `src/unsupervised/models.py::assert_finite`, wired into `MADBaseline`, `HBOS`, `ECOD`, `LODA`, and — since `IsolationForest` is sklearn's own code and can't be patched directly — into `DetectorPackage.to_scaled_matrix`/`score_from_scaled`, the single choke point every serving call goes through |
 | ✅ | No train/test data leakage (`RobustScaler` fit exclusively on train/inliers) | Audited across every `fit`/`fit_transform` call in `src/` (not `StandardScaler` — this repo uses `RobustScaler` throughout, deliberately, for its insensitivity to the heavy tails in transaction amounts) |
 | ✅ | Conformal prediction for probabilistic false-positive control | [Module 6](#module-6-new-methods-and-coverage-guarantees): p-values verified uniform on [0,1] under exchangeability and concentrated near 0 under anomalies via a Kolmogorov-Smirnov test on the implementation itself, on top of the real-data coverage numbers already in that section |
