@@ -1,0 +1,411 @@
+{
+  "dataset": "mlg-ulb/creditcardfraud",
+  "random_split": {
+    "prevalence": 0.0097,
+    "n_test": 50492,
+    "n_fraud": 492,
+    "detectors": {
+      "isolation_forest": {
+        "label": "Isolation Forest",
+        "family": "Aislamiento",
+        "roc_auc": 0.951,
+        "pr_auc": 0.385,
+        "pr_lift": 39.6,
+        "precision@100": 0.65,
+        "fit_s": 0.49
+      },
+      "lof": {
+        "label": "Local Outlier Factor",
+        "family": "Densidad local",
+        "roc_auc": 0.953,
+        "pr_auc": 0.667,
+        "pr_lift": 68.5,
+        "precision@100": 0.9,
+        "fit_s": 2.94
+      },
+      "mad_baseline": {
+        "label": "MAD-z (baseline)",
+        "family": "Estadístico por feature",
+        "roc_auc": 0.931,
+        "pr_auc": 0.146,
+        "pr_lift": 15.0,
+        "precision@100": 0.17,
+        "fit_s": 0.03
+      },
+      "pca_reconstruction": {
+        "label": "PCA (reconstrucción)",
+        "family": "Reconstrucción",
+        "roc_auc": 0.937,
+        "pr_auc": 0.765,
+        "pr_lift": 78.5,
+        "precision@100": 0.97,
+        "fit_s": 0.01
+      },
+      "gmm_density": {
+        "label": "Gaussian Mixture",
+        "family": "Densidad paramétrica",
+        "roc_auc": 0.946,
+        "pr_auc": 0.816,
+        "pr_lift": 83.8,
+        "precision@100": 0.98,
+        "fit_s": 4.45
+      },
+      "robust_mahalanobis": {
+        "label": "Mahalanobis robusto (MCD)",
+        "family": "Covarianza robusta",
+        "roc_auc": 0.95,
+        "pr_auc": 0.764,
+        "pr_lift": 78.4,
+        "precision@100": 0.95,
+        "fit_s": 5.92
+      },
+      "knn_distance": {
+        "label": "kNN (k-ésima distancia)",
+        "family": "Distancia global",
+        "roc_auc": 0.95,
+        "pr_auc": 0.383,
+        "pr_lift": 39.3,
+        "precision@100": 0.51,
+        "fit_s": 0.0
+      },
+      "ocsvm_nystroem": {
+        "label": "One-Class SVM (Nyström)",
+        "family": "Frontera con kernel",
+        "roc_auc": 0.948,
+        "pr_auc": 0.348,
+        "pr_lift": 35.7,
+        "precision@100": 0.56,
+        "fit_s": 0.26
+      },
+      "hbos": {
+        "label": "HBOS",
+        "family": "Estadístico por feature",
+        "roc_auc": 0.95,
+        "pr_auc": 0.563,
+        "pr_lift": 57.8,
+        "precision@100": 0.77,
+        "fit_s": 0.01
+      },
+      "ecod": {
+        "label": "ECOD",
+        "family": "Estadístico por feature",
+        "roc_auc": 0.944,
+        "pr_auc": 0.633,
+        "pr_lift": 64.9,
+        "precision@100": 0.9,
+        "fit_s": 0.03
+      },
+      "loda": {
+        "label": "LODA",
+        "family": "Proyecciones aleatorias",
+        "roc_auc": 0.952,
+        "pr_auc": 0.42,
+        "pr_lift": 43.1,
+        "precision@100": 0.55,
+        "fit_s": 0.03
+      },
+      "abod": {
+        "label": "FastABOD",
+        "family": "Geometría angular",
+        "roc_auc": 0.952,
+        "pr_auc": 0.453,
+        "pr_lift": 46.5,
+        "precision@100": 0.66,
+        "fit_s": 0.0
+      },
+      "vae": {
+        "label": "VAE (ELBO)",
+        "family": "Densidad profunda",
+        "roc_auc": 0.941,
+        "pr_auc": 0.224,
+        "pr_lift": 23.0,
+        "precision@100": 0.24,
+        "fit_s": 12.96
+      },
+      "deep_svdd": {
+        "label": "Deep SVDD",
+        "family": "Una clase profunda",
+        "roc_auc": 0.904,
+        "pr_auc": 0.479,
+        "pr_lift": 49.1,
+        "precision@100": 0.91,
+        "fit_s": 6.43
+      },
+      "hs_trees": {
+        "label": "Half-Space Trees",
+        "family": "Streaming adaptativo",
+        "roc_auc": 0.947,
+        "pr_auc": 0.577,
+        "pr_lift": 59.2,
+        "precision@100": 0.86,
+        "fit_s": 0.17
+      },
+      "autoencoder": {
+        "label": "Autoencoder (ReLU)",
+        "family": "Reconstrucción",
+        "roc_auc": 0.957,
+        "pr_auc": 0.485,
+        "pr_lift": 49.8,
+        "precision@100": 0.8,
+        "fit_s": 7.43
+      },
+      "ensemble_rank_avg": {
+        "label": "Ensemble — promedio de rangos",
+        "family": "Ensemble",
+        "roc_auc": 0.957,
+        "pr_auc": 0.642,
+        "pr_lift": 65.9,
+        "precision@100": 0.96,
+        "fit_s": 0.0
+      },
+      "ensemble_z_avg": {
+        "label": "Ensemble — promedio z",
+        "family": "Ensemble",
+        "roc_auc": 0.957,
+        "pr_auc": 0.559,
+        "pr_lift": 57.4,
+        "precision@100": 0.8,
+        "fit_s": 0.0
+      },
+      "ensemble_z_max": {
+        "label": "Ensemble — máximo z",
+        "family": "Ensemble",
+        "roc_auc": 0.955,
+        "pr_auc": 0.513,
+        "pr_lift": 52.6,
+        "precision@100": 0.77,
+        "fit_s": 0.0
+      }
+    }
+  },
+  "temporal_split": {
+    "prevalence": 0.0025,
+    "n_test": 79867,
+    "n_fraud": 201,
+    "detectors": {
+      "isolation_forest": {
+        "label": "Isolation Forest",
+        "family": "Aislamiento",
+        "roc_auc": 0.959,
+        "pr_auc": 0.132,
+        "pr_lift": 52.4,
+        "precision@100": 0.24,
+        "fit_s": 0.48
+      },
+      "lof": {
+        "label": "Local Outlier Factor",
+        "family": "Densidad local",
+        "roc_auc": 0.854,
+        "pr_auc": 0.016,
+        "pr_lift": 6.6,
+        "precision@100": 0.0,
+        "fit_s": 0.71
+      },
+      "mad_baseline": {
+        "label": "MAD-z (baseline)",
+        "family": "Estadístico por feature",
+        "roc_auc": 0.933,
+        "pr_auc": 0.032,
+        "pr_lift": 12.8,
+        "precision@100": 0.04,
+        "fit_s": 0.02
+      },
+      "pca_reconstruction": {
+        "label": "PCA (reconstrucción)",
+        "family": "Reconstrucción",
+        "roc_auc": 0.954,
+        "pr_auc": 0.739,
+        "pr_lift": 293.5,
+        "precision@100": 0.96,
+        "fit_s": 0.0
+      },
+      "gmm_density": {
+        "label": "Gaussian Mixture",
+        "family": "Densidad paramétrica",
+        "roc_auc": 0.955,
+        "pr_auc": 0.727,
+        "pr_lift": 288.7,
+        "precision@100": 0.91,
+        "fit_s": 4.67
+      },
+      "robust_mahalanobis": {
+        "label": "Mahalanobis robusto (MCD)",
+        "family": "Covarianza robusta",
+        "roc_auc": 0.963,
+        "pr_auc": 0.706,
+        "pr_lift": 280.7,
+        "precision@100": 0.94,
+        "fit_s": 7.63
+      },
+      "knn_distance": {
+        "label": "kNN (k-ésima distancia)",
+        "family": "Distancia global",
+        "roc_auc": 0.958,
+        "pr_auc": 0.109,
+        "pr_lift": 43.3,
+        "precision@100": 0.24,
+        "fit_s": 0.0
+      },
+      "ocsvm_nystroem": {
+        "label": "One-Class SVM (Nyström)",
+        "family": "Frontera con kernel",
+        "roc_auc": 0.946,
+        "pr_auc": 0.066,
+        "pr_lift": 26.1,
+        "precision@100": 0.18,
+        "fit_s": 0.27
+      },
+      "hbos": {
+        "label": "HBOS",
+        "family": "Estadístico por feature",
+        "roc_auc": 0.959,
+        "pr_auc": 0.278,
+        "pr_lift": 110.7,
+        "precision@100": 0.45,
+        "fit_s": 0.01
+      },
+      "ecod": {
+        "label": "ECOD",
+        "family": "Estadístico por feature",
+        "roc_auc": 0.957,
+        "pr_auc": 0.293,
+        "pr_lift": 116.3,
+        "precision@100": 0.4,
+        "fit_s": 0.03
+      },
+      "loda": {
+        "label": "LODA",
+        "family": "Proyecciones aleatorias",
+        "roc_auc": 0.961,
+        "pr_auc": 0.135,
+        "pr_lift": 53.6,
+        "precision@100": 0.19,
+        "fit_s": 0.04
+      },
+      "abod": {
+        "label": "FastABOD",
+        "family": "Geometría angular",
+        "roc_auc": 0.955,
+        "pr_auc": 0.119,
+        "pr_lift": 47.5,
+        "precision@100": 0.3,
+        "fit_s": 0.0
+      },
+      "vae": {
+        "label": "VAE (ELBO)",
+        "family": "Densidad profunda",
+        "roc_auc": 0.943,
+        "pr_auc": 0.051,
+        "pr_lift": 20.3,
+        "precision@100": 0.07,
+        "fit_s": 10.05
+      },
+      "deep_svdd": {
+        "label": "Deep SVDD",
+        "family": "Una clase profunda",
+        "roc_auc": 0.872,
+        "pr_auc": 0.51,
+        "pr_lift": 202.8,
+        "precision@100": 0.84,
+        "fit_s": 6.16
+      },
+      "hs_trees": {
+        "label": "Half-Space Trees",
+        "family": "Streaming adaptativo",
+        "roc_auc": 0.951,
+        "pr_auc": 0.226,
+        "pr_lift": 89.9,
+        "precision@100": 0.42,
+        "fit_s": 0.16
+      },
+      "autoencoder": {
+        "label": "Autoencoder (ReLU)",
+        "family": "Reconstrucción",
+        "roc_auc": 0.963,
+        "pr_auc": 0.16,
+        "pr_lift": 63.7,
+        "precision@100": 0.3,
+        "fit_s": 7.32
+      },
+      "ensemble_rank_avg": {
+        "label": "Ensemble — promedio de rangos",
+        "family": "Ensemble",
+        "roc_auc": 0.969,
+        "pr_auc": 0.495,
+        "pr_lift": 196.5,
+        "precision@100": 0.56,
+        "fit_s": 0.0
+      },
+      "ensemble_z_avg": {
+        "label": "Ensemble — promedio z",
+        "family": "Ensemble",
+        "roc_auc": 0.965,
+        "pr_auc": 0.295,
+        "pr_lift": 117.1,
+        "precision@100": 0.41,
+        "fit_s": 0.0
+      },
+      "ensemble_z_max": {
+        "label": "Ensemble — máximo z",
+        "family": "Ensemble",
+        "roc_auc": 0.946,
+        "pr_auc": 0.2,
+        "pr_lift": 79.5,
+        "precision@100": 0.4,
+        "fit_s": 0.0
+      }
+    }
+  },
+  "paysim_test_prevalence": 0.1411,
+  "comparison_random": {
+    "spearman_roc_rank": 0.382,
+    "p_value": 0.1062,
+    "rank_shift": {
+      "gmm_density": -13,
+      "lof": -3,
+      "deep_svdd": -13,
+      "robust_mahalanobis": -7,
+      "abod": -2,
+      "ensemble_rank_avg": 3,
+      "autoencoder": 7,
+      "knn_distance": -2,
+      "isolation_forest": 1,
+      "ocsvm_nystroem": 0,
+      "ensemble_z_avg": 9,
+      "pca_reconstruction": -4,
+      "hbos": 4,
+      "ensemble_z_max": 3,
+      "hs_trees": 2,
+      "vae": 1,
+      "loda": 9,
+      "ecod": 3,
+      "mad_baseline": 1
+    }
+  },
+  "comparison_temporal": {
+    "spearman_roc_rank": 0.087,
+    "p_value": 0.7231,
+    "rank_shift": {
+      "gmm_density": -9,
+      "lof": -17,
+      "deep_svdd": -12,
+      "robust_mahalanobis": 0,
+      "abod": -6,
+      "ensemble_rank_avg": 4,
+      "autoencoder": 6,
+      "knn_distance": 0,
+      "isolation_forest": 3,
+      "ocsvm_nystroem": -2,
+      "ensemble_z_avg": 9,
+      "pca_reconstruction": 1,
+      "hbos": 7,
+      "ensemble_z_max": -7,
+      "hs_trees": 2,
+      "vae": 1,
+      "loda": 11,
+      "ecod": 9,
+      "mad_baseline": 2
+    }
+  },
+  "elapsed_seconds": 94.8
+}

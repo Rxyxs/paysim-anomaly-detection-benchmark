@@ -25,3 +25,6 @@ Thumbs.db
 *.exe
 *.test
 *.out
+
+# Real-data downloads (ULB) -- re-downloadable from Kaggle
+data/raw/
