@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bank Anomaly Detection</title>
-<meta name="description" content="Fraud and anomaly detection system for mobile banking transactions, built on the synthetic **PaySim** dataset ([`ealaxi/paysim1`](https://www.kaggle.com/datasets/ealaxi/paysim1) on">
+<meta name="description" content="Fraud and anomaly detection system for mobile banking transactions, built on the synthetic PaySim dataset (ealaxi/paysim1 on Kaggle), which simulates financial transactions based o">
 <style>
   :root { --bg:#FBFAF8; --surface:#FFF; --ink:#23201D; --muted:#6B645D; --line:#E3DED7; --accent:#B5553D; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
@@ -83,7 +83,7 @@
 <h2>Which detectors are redundant?</h2>
 <figure>
 <img src="figures/benchmark_correlation.png" alt="Correlation between detectors" loading="lazy">
-<figcaption><strong>How to read the figure.</strong> Spearman correlation between anomaly *rankings*, not between raw scores. Spearman precisely because the scores live on incomparable scales: a Mahalanobis distance and a log-likelihood can&#x27;t be meaningfully correlated linearly, but the order they produce can.</figcaption>
+<figcaption><strong>How to read the figure.</strong> Spearman correlation between anomaly <em>rankings</em>, not between raw scores. Spearman precisely because the scores live on incomparable scales: a Mahalanobis distance and a log-likelihood can&#x27;t be meaningfully correlated linearly, but the order they produce can.</figcaption>
 </figure>
 <figure>
 <img src="figures/benchmark_pr_curve.png" alt="Precision-Recall curves" loading="lazy">
@@ -117,6 +117,7 @@
 <h2>Adding detectors is not the same as adding coverage</h2>
 <figure>
 <img src="figures/benchmark_correlation.png" alt="Correlation between detectors" loading="lazy">
+<figcaption><strong>How to read the figure.</strong> Spearman correlation between anomaly <em>rankings</em>, not between raw scores. Spearman precisely because the scores live on incomparable scales: a Mahalanobis distance and a log-likelihood can&#x27;t be meaningfully correlated linearly, but the order they produce can.</figcaption>
 </figure>
 <h2>Conformal detection: turning a hope into a guarantee</h2>
 <figure>
